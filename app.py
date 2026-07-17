@@ -189,7 +189,7 @@ def extract_with_gemini(pdf_path: str):
     }
     """
     
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-1.5-flash-8b')
     contents = [prompt] + images
     
     try:
