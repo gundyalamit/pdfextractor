@@ -161,6 +161,8 @@ def extract_with_gemini(pdf_path: str):
     Analyze the provided pages of a document. 
     Extract all text and tables in the exact order they appear visually from top to bottom.
     
+    CRITICAL: For non-table text elements, you MUST preserve the physical line breaks EXACTLY as they appear in the original document by including '\\n' characters in the "content" string wherever a new line starts in the image. Do not combine lines into a single continuous paragraph!
+    
     Return ONLY a raw JSON object with this exact schema:
     {
       "elements": [
@@ -189,7 +191,7 @@ def extract_with_gemini(pdf_path: str):
     }
     """
     
-    model = genai.GenerativeModel('gemini-1.5-flash-8b')
+    model = genai.GenerativeModel('gemini-flash-lite-latest')
     contents = [prompt] + images
     
     try:
